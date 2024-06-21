@@ -1,31 +1,44 @@
 import { FaCartPlus as CartIcon } from 'react-icons/fa';
 
-export default function ({ image, title, content, tags, published }) {
+export default function PostCard({
+  image,
+  title,
+  content,
+  tags,
+  category,
+  published,
+}) {
   return (
     <div className={`post ${published ? 'published' : ''}`}>
       <div className="card-image">
         <img src={image} alt="Post Random" />
       </div>
       <div className="card-content">
-        <h3>{title}</h3>
+        <h2>{title}</h2>
         {tags.length > 0 ? (
-          <div className="ingredienti">
-            <strong>Tags:</strong>
+          <div>
+            <strong>Tags: </strong>
             <ul>
               {tags.map((tag, index) => (
-                <li key={`tag${index}`}>{tag}</li>
+                <li key={`tg${index}`}>{tag.name}</li>
               ))}
             </ul>
           </div>
         ) : (
           <strong>Tag non specificato</strong>
         )}
+        <div>
+          <strong>Categoria: </strong>
+          <ul>
+            <li>{category.name}</li>
+          </ul>
+        </div>
         <p className={`${!content ? 'italic' : ''}`}>
           {content || 'Descrizione non disponibile'}
         </p>
         {published && (
           <button>
-            Add to Cart <CartIcon />
+            Add to Post <CartIcon />
           </button>
         )}
       </div>
